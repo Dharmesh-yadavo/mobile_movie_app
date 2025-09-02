@@ -1,4 +1,4 @@
-export const TMDB_CONFIG = {
+export const api = {
     BASE_URL: 'https://api.themoviedb.org/3',
     API_KEY: process.env.EXPO_PUBLIC_MOVIE_API_KEY,
     headers: {
@@ -9,12 +9,12 @@ export const TMDB_CONFIG = {
 
 export const fetchMovies = async ( {query} : {query: string}) => {
     const endpoint = query?
-        `${TMDB_CONFIG.BASE_URL}/search/movies/${encodeURIComponent(query)}`
-        : `${TMDB_CONFIG.BASE_URL}/disover/movie?sort_by=popularity.desc`
+        `${api.BASE_URL}/search/movies/${encodeURIComponent(query)}`
+        : `${api.BASE_URL}/discover/movie?sort_by=popularity.desc`
 
     const response = await fetch(endpoint, {
         method: "GET",
-        headers: TMDB_CONFIG.headers,
+        headers: api.headers,
     })
 
     if (!response.ok) {
